@@ -15,7 +15,7 @@ Rapid pagination without using OFFSET
 
 - PHP: ^5.6 || ^7.0
 - idiorm: ^5.4, paris: ^1.5
-- [lampager/lampager](https://github.com/lampager/lampager): ^0.3
+- [lampager/lampager](https://github.com/lampager/lampager): ^0.4
 
 ## Installing
 
