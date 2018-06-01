@@ -20,7 +20,7 @@ Rapid pagination without using OFFSET
 ## Installing
 
 ```bash
-composer require lampager/lampager-idiorm:^0.1.2
+composer require lampager/lampager-idiorm
 ```
 
 ## Basic Usage
