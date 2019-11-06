@@ -416,4 +416,42 @@ class MySQLGrammarTest extends TestCase
             ) `temporary_table`
         ', $this->toSql($builder));
     }
+
+    /**
+     * @test
+     */
+    public function testQualifiedColumnOrder()
+    {
+        $cursor = ['posts.updated_at' => '', 'posts.created_at' => '', 'posts.id' => ''];
+        $builder = lampager(ORM::forTable('posts')->where_equal('posts.user_id', 2))
+            ->forward()->limit(3)
+            ->order_by_asc('posts.updated_at')
+            ->order_by_asc('posts.created_at')
+            ->order_by_asc('posts.id')
+            ->seekable()
+            ->build($cursor);
+        $this->assertSqlEquals('
+            SELECT * FROM (
+                SELECT * FROM `posts`
+                WHERE `posts`.`user_id` = ? AND (
+                  `posts`.`updated_at` = ? AND `posts`.`created_at` = ? AND `posts`.`id` < ? OR
+                  `posts`.`updated_at` = ? AND `posts`.`created_at` < ? OR
+                  `posts`.`updated_at` < ?
+                )
+                ORDER BY `posts`.`updated_at` DESC, `posts`.`created_at` DESC, `posts`.`id` DESC
+                LIMIT 1
+            ) `temporary_table`
+            UNION ALL
+            SELECT * FROM (
+                SELECT * FROM `posts`
+                WHERE `posts`.`user_id` = ? AND (
+                  `posts`.`updated_at` = ? AND `posts`.`created_at` = ? AND `posts`.`id` >= ? OR
+                  `posts`.`updated_at` = ? AND `posts`.`created_at` > ? OR
+                  `posts`.`updated_at` > ?
+                )
+                ORDER BY `posts`.`updated_at` ASC, `posts`.`created_at` ASC, `posts`.`id` ASC
+                LIMIT 4
+            ) `temporary_table`
+        ', $this->toSql($builder));
+    }
 }

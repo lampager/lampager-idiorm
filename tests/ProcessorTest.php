@@ -435,4 +435,30 @@ class ProcessorTest extends TestCase
                 ->paginate(['id' => '3', 'updated_at' => '2017-01-01 10:00:00'])
         );
     }
+
+    /**
+     * @test
+     */
+    public function testQualifiedColumnOrder()
+    {
+        $this->assertResultSame(
+            [
+                'records' => [
+                    ['id' => '3', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => '2', 'updated_at' => '2017-01-01 11:00:00'],
+                ],
+                'has_previous' => true,
+                'previous_cursor' => ['posts.updated_at' => '2017-01-01 10:00:00', 'posts.id' => '1'],
+                'has_next' => true,
+                'next_cursor' => ['posts.updated_at' => '2017-01-01 11:00:00', 'posts.id' => '4'],
+            ],
+            lampager(ORM::for_table('posts'))
+                ->forward()->limit(3)
+                ->order_by_asc('posts.updated_at')
+                ->order_by_asc('posts.id')
+                ->seekable()
+                ->paginate(['posts.id' => '3', 'posts.updated_at' => '2017-01-01 10:00:00'])
+        );
+    }
 }
