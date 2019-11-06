@@ -23,6 +23,18 @@ class Processor extends ArrayProcessor
     use HasSnakeAliases;
 
     /**
+     * Return comparable value from a row.
+     *
+     * @param  mixed      $row
+     * @param  string     $column
+     * @return int|string
+     */
+    protected function field($row, $column)
+    {
+        return parent::field($row, static::dropTablePrefix($column));
+    }
+
+    /**
      * Slice rows, like PHP function array_slice().
      *
      * @param  array[]|IdiormResultSet $rows
@@ -61,5 +73,18 @@ class Processor extends ArrayProcessor
     protected function defaultFormat($rows, array $meta, Query $query)
     {
         return new PaginationResult($rows, $meta);
+    }
+
+    /**
+     * Drop table prefix on column name.
+     *
+     * @param  string $column
+     * @return string
+     */
+    protected static function dropTablePrefix($column)
+    {
+        $segments = explode('.', $column);
+
+        return end($segments);
     }
 }
