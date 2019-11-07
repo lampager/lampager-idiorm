@@ -176,7 +176,7 @@ Paginator::transform(\Lampager\Query $query): \ORM|\ORMWrapper
 Perform configure + transform.
 
 ```php
-Paginator::build(\Lampager\Cursor|array $cursor = []): \ORM|\ORMWrapper
+Paginator::build(\Lampager\Contracts\Cursor|array $cursor = []): \ORM|\ORMWrapper
 ```
 
 ### Paginator::paginate()
@@ -184,12 +184,12 @@ Paginator::build(\Lampager\Cursor|array $cursor = []): \ORM|\ORMWrapper
 Perform configure + transform + process.
 
 ```php
-Paginator::paginate(\Lampager\Cursor|array $cursor = []): \Lampager\idiorm\PaginationResult
+Paginator::paginate(\Lampager\Contracts\Cursor|array $cursor = []): \Lampager\idiorm\PaginationResult
 ```
 
 #### Arguments
 
-- **`(mixed)`** __*$cursor*__<br> An associative array that contains `$column => $value` or an object that implements `\Lampager\Cursor`. It must be **all-or-nothing**.
+- **`(mixed)`** __*$cursor*__<br> An associative array that contains `$column => $value` or an object that implements `\Lampager\Contracts\Cursor`. It must be **all-or-nothing**.
   - For initial page, omit this parameter or pass empty array.
   - For subsequent pages, pass all parameters. Partial parameters are not allowd.
 
