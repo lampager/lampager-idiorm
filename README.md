@@ -2,7 +2,7 @@
 <img width="320" alt="lampager-idiorm" src="https://user-images.githubusercontent.com/1351893/32459320-948766b8-c372-11e7-84b9-061ffa6233ba.png">
 </p>
 <p align="center">
-<a href="https://travis-ci.org/lampager/lampager-idiorm"><img src="https://travis-ci.org/lampager/lampager-idiorm.svg?branch=master" alt="Build Status"></a>
+<a href="https://travis-ci.com/lampager/lampager-idiorm"><img src="https://travis-ci.com/lampager/lampager-idiorm.svg?branch=master" alt="Build Status"></a>
 <a href="https://coveralls.io/github/lampager/lampager-idiorm?branch=master"><img src="https://coveralls.io/repos/github/lampager/lampager-idiorm/badge.svg?branch=master" alt="Coverage Status"></a>
 <a href="https://scrutinizer-ci.com/g/lampager/lampager-idiorm/?branch=master"><img src="https://scrutinizer-ci.com/g/lampager/lampager-idiorm/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
 </p>
