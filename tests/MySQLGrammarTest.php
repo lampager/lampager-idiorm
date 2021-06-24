@@ -9,8 +9,8 @@ use PHPUnit\Framework\TestCase;
 class MySQLGrammarTest extends TestCase
 {
     /**
-     * @param $expected
-     * @param $actual
+     * @param mixed $expected
+     * @param mixed $actual
      */
     protected function assertSqlEquals($expected, $actual)
     {

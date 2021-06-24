@@ -9,10 +9,11 @@ class TestCase extends BaseTestCase
 {
     private static $initialized = false;
 
-    public static function setUpBeforeClass()
+    /**
+     * @beforeClass
+     */
+    public static function initialize()
     {
-        parent::setUpBeforeClass();
-
         if (!self::$initialized) {
             self::$initialized = true;
 
