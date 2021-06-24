@@ -7,8 +7,8 @@ use ORM;
 class ProcessorTest extends TestCase
 {
     /**
-     * @param $expected
-     * @param $actual
+     * @param mixed $expected
+     * @param mixed $actual
      */
     protected function assertResultSame($expected, $actual)
     {

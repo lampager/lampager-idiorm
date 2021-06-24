@@ -12,8 +12,8 @@ class Post extends Model
 class ParisTest extends TestCase
 {
     /**
-     * @param $expected
-     * @param $actual
+     * @param mixed $expected
+     * @param mixed $actual
      */
     protected function assertResultSame($expected, $actual)
     {

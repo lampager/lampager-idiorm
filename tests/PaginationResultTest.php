@@ -7,8 +7,8 @@ use ORM;
 class PaginationResultTest extends TestCase
 {
     /**
-     * @param $expected
-     * @param $actual
+     * @param mixed $expected
+     * @param mixed $actual
      */
     protected function assertResultSame($expected, $actual)
     {
@@ -82,11 +82,12 @@ EOD;
 
     /**
      * @test
-     * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage Call to undefined method Lampager\Idiorm\PaginationResult::invalid()
      */
     public function testUndefinedMethod()
     {
+        $this->expectException(\BadMethodCallException::class);
+        $this->expectExceptionMessage('Call to undefined method Lampager\Idiorm\PaginationResult::invalid()');
+
         lampager(ORM::for_table('posts'))
             ->forward()->limit(3)
             ->order_by_asc('updated_at')
