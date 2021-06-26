@@ -28,7 +28,6 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^6.4",
-        "php-coveralls/php-coveralls": "^1.0",
         "nilportugues/sql-query-formatter": "^1.2.2",
         "j4mie/idiorm": "^1.5",
         "j4mie/paris": "^1.5"
