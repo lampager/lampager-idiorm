@@ -28,7 +28,7 @@ class PaginationResultTest extends TestCase
             ->order_by_asc('updated_at')
             ->order_by_asc('id')
             ->seekable()
-            ->paginate(['id' => '3', 'updated_at' => '2017-01-01 10:00:00']);
+            ->paginate(['id' => 3, 'updated_at' => '2017-01-01 10:00:00']);
 
         $this->assertResultSame(
             3,
@@ -46,10 +46,10 @@ class PaginationResultTest extends TestCase
             ->order_by_asc('updated_at')
             ->order_by_asc('id')
             ->seekable()
-            ->paginate(['id' => '3', 'updated_at' => '2017-01-01 10:00:00'])
+            ->paginate(['id' => 3, 'updated_at' => '2017-01-01 10:00:00'])
             ->to_json(JSON_PRETTY_PRINT);
 
-        $expected = <<<'EOD'
+        $string = <<<'EOD'
 {
     "records": [
         {
@@ -77,6 +77,35 @@ class PaginationResultTest extends TestCase
     }
 }
 EOD;
+        $number = <<<'EOD'
+{
+    "records": [
+        {
+            "id": 3,
+            "updated_at": "2017-01-01 10:00:00"
+        },
+        {
+            "id": 5,
+            "updated_at": "2017-01-01 10:00:00"
+        },
+        {
+            "id": 2,
+            "updated_at": "2017-01-01 11:00:00"
+        }
+    ],
+    "has_previous": true,
+    "previous_cursor": {
+        "updated_at": "2017-01-01 10:00:00",
+        "id": 1
+    },
+    "has_next": true,
+    "next_cursor": {
+        "updated_at": "2017-01-01 11:00:00",
+        "id": 4
+    }
+}
+EOD;
+        $expected = version_compare(PHP_VERSION, '8.1', '>=') ? $number : $string;
         $this->assertSame($expected, $actual);
     }
 
@@ -93,7 +122,7 @@ EOD;
             ->order_by_asc('updated_at')
             ->order_by_asc('id')
             ->seekable()
-            ->paginate(['id' => '3', 'updated_at' => '2017-01-01 10:00:00'])
+            ->paginate(['id' => 3, 'updated_at' => '2017-01-01 10:00:00'])
             ->invalid();
     }
 }

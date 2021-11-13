@@ -8,10 +8,8 @@ jobs:
 
     strategy:
       matrix:
-        php: [5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 8.0]
-        composer_flags:
-          - --prefer-stable --prefer-lowest
-          - --prefer-stable
+        php: [5.6, '7.0', 7.1, 7.2, 7.3, 7.4, '8.0', 8.1]
+        flags: [--prefer-lowest, '']
 
     steps:
       - uses: actions/checkout@v2
@@ -22,8 +20,8 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: xdebug
 
-      - run: composer require phpunit/phpunit --dev --no-update ${{ matrix.composer_flags }}
-      - run: composer update ${{ matrix.composer_flags }}
+      - run: composer require phpunit/phpunit --dev --no-update
+      - run: composer update ${{ matrix.flags }}
       - run: mkdir -p build/logs
       - run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 

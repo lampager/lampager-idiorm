@@ -29,4 +29,13 @@ class TestCase extends BaseTestCase
             $table->create(['id' => 4, 'updated_at' => '2017-01-01 11:00:00'])->save();
         }
     }
+
+    /**
+     * @param int $number
+     * @return int|string
+     */
+    protected function number($number)
+    {
+        return version_compare(PHP_VERSION, '8.1', '>=') ? $number : "$number";
+    }
 }
