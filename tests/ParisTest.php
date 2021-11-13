@@ -31,14 +31,14 @@ class ParisTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '3', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '2', 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(3), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(2), 'updated_at' => '2017-01-01 11:00:00'],
                 ],
                 'has_previous' => true,
-                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '1'],
+                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(1)],
                 'has_next' => true,
-                'next_cursor' => ['updated_at' => '2017-01-01 11:00:00', 'id' => '4'],
+                'next_cursor' => ['updated_at' => '2017-01-01 11:00:00', 'id' => $this->number(4)],
             ],
             lampager(Model::factory(Post::class))
                 ->forward()->limit(3)

@@ -26,14 +26,14 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '1', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '3', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(1), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(3), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => null,
                 'previous_cursor' => null,
                 'has_next' => true,
-                'next_cursor' => ['updated_at' => '2017-01-01 11:00:00', 'id' => '2'],
+                'next_cursor' => ['updated_at' => '2017-01-01 11:00:00', 'id' => $this->number(2)],
             ],
             lampager(ORM::for_table('posts'))
                 ->forward()->limit(3)
@@ -52,14 +52,14 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '1', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '3', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(1), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(3), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => null,
                 'previous_cursor' => null,
                 'has_next' => true,
-                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '5'],
+                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(5)],
             ],
             lampager(ORM::for_table('posts'))
                 ->forward()->limit(3)
@@ -79,14 +79,14 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '3', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '2', 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(3), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(2), 'updated_at' => '2017-01-01 11:00:00'],
                 ],
                 'has_previous' => true,
-                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '1'],
+                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(1)],
                 'has_next' => true,
-                'next_cursor' => ['updated_at' => '2017-01-01 11:00:00', 'id' => '4'],
+                'next_cursor' => ['updated_at' => '2017-01-01 11:00:00', 'id' => $this->number(4)],
             ],
             lampager(ORM::for_table('posts'))
                 ->forward()->limit(3)
@@ -105,12 +105,12 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '2', 'updated_at' => '2017-01-01 11:00:00'],
-                    ['id' => '4', 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(2), 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(4), 'updated_at' => '2017-01-01 11:00:00'],
                 ],
                 'has_previous' => true,
-                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '5'],
+                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(5)],
                 'has_next' => false,
                 'next_cursor' => null,
             ],
@@ -132,12 +132,12 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '2', 'updated_at' => '2017-01-01 11:00:00'],
-                    ['id' => '4', 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(2), 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(4), 'updated_at' => '2017-01-01 11:00:00'],
                 ],
                 'has_previous' => true,
-                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '3'],
+                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(3)],
                 'has_next' => null,
                 'next_cursor' => null,
             ],
@@ -158,12 +158,12 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '2', 'updated_at' => '2017-01-01 11:00:00'],
-                    ['id' => '4', 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(2), 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(4), 'updated_at' => '2017-01-01 11:00:00'],
                 ],
                 'has_previous' => true,
-                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '5'],
+                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(5)],
                 'has_next' => null,
                 'next_cursor' => null,
             ],
@@ -185,13 +185,13 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '1', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '3', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(1), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(3), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => false,
                 'previous_cursor' => null,
                 'has_next' => true,
-                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '5'],
+                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(5)],
             ],
             lampager(ORM::for_table('posts'))
                 ->backward()->limit(3)
@@ -210,12 +210,12 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '1', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(1), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => false,
                 'previous_cursor' => null,
                 'has_next' => true,
-                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '1'],
+                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(1)],
             ],
             lampager(ORM::for_table('posts'))
                 ->backward()->limit(3)
@@ -235,14 +235,14 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '4', 'updated_at' => '2017-01-01 11:00:00'],
-                    ['id' => '2', 'updated_at' => '2017-01-01 11:00:00'],
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(4), 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(2), 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => null,
                 'previous_cursor' => null,
                 'has_next' => true,
-                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '3'],
+                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(3)],
             ],
             lampager(ORM::for_table('posts'))
                 ->forward()->limit(3)
@@ -261,14 +261,14 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '4', 'updated_at' => '2017-01-01 11:00:00'],
-                    ['id' => '2', 'updated_at' => '2017-01-01 11:00:00'],
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(4), 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(2), 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => null,
                 'previous_cursor' => null,
                 'has_next' => true,
-                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '5'],
+                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(5)],
             ],
             lampager(ORM::for_table('posts'))
                 ->forward()->limit(3)
@@ -288,11 +288,11 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '3', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '1', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(3), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(1), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => true,
-                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '5'],
+                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(5)],
                 'has_next' => false,
                 'next_cursor' => null,
             ],
@@ -313,10 +313,10 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '1', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(1), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => true,
-                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '1'],
+                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(1)],
                 'has_next' => false,
                 'next_cursor' => null,
             ],
@@ -338,12 +338,12 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '3', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '1', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(3), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(1), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => true,
-                'previous_cursor' => ['updated_at' => '2017-01-01 11:00:00', 'id' => '2'],
+                'previous_cursor' => ['updated_at' => '2017-01-01 11:00:00', 'id' => $this->number(2)],
                 'has_next' => null,
                 'next_cursor' => null,
             ],
@@ -364,12 +364,12 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '3', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '1', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(3), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(1), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => true,
-                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '5'],
+                'previous_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(5)],
                 'has_next' => null,
                 'next_cursor' => null,
             ],
@@ -391,14 +391,14 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '2', 'updated_at' => '2017-01-01 11:00:00'],
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '3', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(2), 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(3), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => true,
-                'previous_cursor' => ['updated_at' => '2017-01-01 11:00:00', 'id' => '4'],
+                'previous_cursor' => ['updated_at' => '2017-01-01 11:00:00', 'id' => $this->number(4)],
                 'has_next' => true,
-                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '1'],
+                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(1)],
             ],
             lampager(ORM::for_table('posts'))
                 ->backward()->limit(3)
@@ -417,14 +417,14 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '4', 'updated_at' => '2017-01-01 11:00:00'],
-                    ['id' => '2', 'updated_at' => '2017-01-01 11:00:00'],
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(4), 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(2), 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
                 ],
                 'has_previous' => false,
                 'previous_cursor' => null,
                 'has_next' => true,
-                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => '5'],
+                'next_cursor' => ['updated_at' => '2017-01-01 10:00:00', 'id' => $this->number(5)],
             ],
             lampager(ORM::for_table('posts'))
                 ->backward()->limit(3)
@@ -444,14 +444,14 @@ class ProcessorTest extends TestCase
         $this->assertResultSame(
             [
                 'records' => [
-                    ['id' => '3', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '5', 'updated_at' => '2017-01-01 10:00:00'],
-                    ['id' => '2', 'updated_at' => '2017-01-01 11:00:00'],
+                    ['id' => $this->number(3), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(5), 'updated_at' => '2017-01-01 10:00:00'],
+                    ['id' => $this->number(2), 'updated_at' => '2017-01-01 11:00:00'],
                 ],
                 'has_previous' => true,
-                'previous_cursor' => ['posts.updated_at' => '2017-01-01 10:00:00', 'posts.id' => '1'],
+                'previous_cursor' => ['posts.updated_at' => '2017-01-01 10:00:00', 'posts.id' => $this->number(1)],
                 'has_next' => true,
-                'next_cursor' => ['posts.updated_at' => '2017-01-01 11:00:00', 'posts.id' => '4'],
+                'next_cursor' => ['posts.updated_at' => '2017-01-01 11:00:00', 'posts.id' => $this->number(4)],
             ],
             lampager(ORM::for_table('posts'))
                 ->forward()->limit(3)
