@@ -28,7 +28,7 @@
         "lampager/lampager": "^0.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
+        "phpunit/phpunit": ">=5.7",
         "nilportugues/sql-query-formatter": "^1.2.2",
         "j4mie/idiorm": "^1.5",
         "j4mie/paris": "^1.5"
